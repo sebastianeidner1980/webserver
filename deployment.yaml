@@ -1,1 +1,27 @@
-https://github.com/sebastianeidner1980/webserver
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: httpd-frontend
+  namespace: webserver
+  labels:
+    app: httpd-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd-frontend
+  template:
+    metadata:
+      labels:
+        app: httpd-frontend
+    spec:
+      containers:
+        - name: httpd-24
+          image: registry.redhat.io/rhel8/httpd-24
+          ports:
+            - name: http-port
+              containerPort: 8080
+              protocol: TCP
+            - name: https-port
+              containerPort: 8443
+              protocol: TCP
