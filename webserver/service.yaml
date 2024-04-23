@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: http-port
+  namespace: webserver
+spec:
+  ports:
+    - name: http-port
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: httpd-frontend
+
